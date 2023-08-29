@@ -27,7 +27,14 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.FLOAT,
       allowNull: false
-    }
+    },
+
+    createDB: {  //sirve para distinguir entre videojuegos de la api y bd
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+      allowNull: false
+    },
+  
   });
 };
 
