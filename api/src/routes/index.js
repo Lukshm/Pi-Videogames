@@ -5,6 +5,7 @@ const { Router } = require('express');
 const {getAllGame} = require("../Controllers/getAllGame");
 const {getAllGenre} = require ("../Controllers/getAllGenre");
 const {getGameById} = require ("../Controllers/getGameById");
+const { postGame } = require('../Controllers/postGame');
 
 
 //-------------------------------
@@ -15,6 +16,7 @@ const router = Router();
 router.get('/videogame', getAllGame);
 router.get('/genre', getAllGenre);
 router.get('/:idVideogame', getGameById)
+router.post('/create', postGame)
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);

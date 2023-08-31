@@ -32,4 +32,4 @@ const getApiData = async ()=> {
 
 
 
-module.exports = getApiData;
+module.exports = {getApiData};

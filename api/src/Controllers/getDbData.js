@@ -1,6 +1,6 @@
 const {Videogame, Genre} = require ('../db')
 
-const getDataDb = async () => {
+const getDbData = async () => {
     const dbData = await Videogame.findAll({
         include: {
             model :Genre,
@@ -10,7 +10,8 @@ const getDataDb = async () => {
             }
         }
     });
+    
     return  dbData;
 }
 
-module.exports = getDataDb;
+module.exports = {getDbData};

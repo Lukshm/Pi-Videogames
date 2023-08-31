@@ -11,7 +11,7 @@ const getAllGame = async (req, res) => {
 
     if(name){ //si viene por query 
         let vgName = await vgList.filter(vg => vg.name.toLowerCase().includes(name.toLowerCase()));
-        vgName.length ? res.status(200).send(vgName):res.status(404).send('no esta el juegito pa')
+        vgName.length ? res.status(200).send(vgName):res.status(404).send('No, justo ese no lo tengo pa')
         console.log(vgList);
     } else{
         res.status(200).send(vgList)
