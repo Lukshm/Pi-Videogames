@@ -1,36 +1,23 @@
 require('dotenv').config();
-const axios = require('axios');
-const URL = 'https://api.rawg.io/api/games'
-const {API_KEY} = process.env;
+
+const centralGame = require ('./centralGame')
+
 
 
 const getAllGame = async (req, res) => {
     
-    const {name} = req.query
-    if(name){ //si viene por query 
-        try{
-            const {data} = await axios.get(`${URL}?search=${name}&key=${API_KEY}`)
-            return data ? res.status (200).json(data) : res.status(404).send('Not Found')
-        }
-         catch (error){
-            res.status(500).send(error.message)
-            console.log(error);
-        }
-    
-    } else{
-       
-        try{ // si viene fuera de query
-            const {data} = await axios.get(`${URL}?key=${API_KEY}`)
-            return data ? res.status (200).json(data) : res.status(404).send('Not Found')
-        }
-         catch (error){
-            res.status(500).send(error.message)
-            console.log(error);
-        }
-    }
-    
-    
+    let vgList = await centralGame();
+    const name = req.query.name
 
+    if(name){ //si viene por query 
+        let vgName = await vgList.filter(vg => vg.name.toLowerCase().includes(name.toLowerCase()));
+        vgName.length ? res.status(200).send(vgName):res.status(404).send('no esta el juegito pa')
+        console.log(vgList);
+    } else{
+        res.status(200).send(vgList)
+        
+        }
+    
 }
 
 module.exports = {getAllGame}
