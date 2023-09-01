@@ -4,7 +4,7 @@ const getDbData = async () => {
     const dbData = await Videogame.findAll({
         include: {
             model :Genre,
-            attribute: ["name"],
+            attribute: ["name"], 
             through:{
                 attributes:[]
             }

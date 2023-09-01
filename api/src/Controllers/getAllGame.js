@@ -1,7 +1,7 @@
 require('dotenv').config();
 
-const centralGame = require ('./centralGame')
-
+const {centralGame} = require ('./centralGame')
+const {getGameById} = require ('./getGameById')
 
 
 const getAllGame = async (req, res) => {
@@ -20,4 +20,15 @@ const getAllGame = async (req, res) => {
     
 }
 
-module.exports = {getAllGame}
+    const gamebyId = async (req, res) => {
+    const {id} = req.params
+    const source = isNaN(id) ? "db" : "api"
+    try{
+        const result = await getGameById (id, source)
+        if(result.length == 0) throw Error ('Game not found')
+        return res.status(200).send(result)
+    }catch (error){
+        return res.status(400).json
+    }
+}
+module.exports = {getAllGame, gamebyId}

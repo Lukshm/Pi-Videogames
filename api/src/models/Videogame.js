@@ -4,11 +4,12 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Videogame', {
-    id:{
-      type: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.UUID,
       primaryKey: true,
+      unique: true,
       allowNull: false,
-      autoIncrement: true
+      defaultValue: DataTypes.UUIDV4,
     },
     name: {
       type: DataTypes.STRING,

@@ -11,4 +11,4 @@ const centralGame = async () => {
     return totalData;
 }
 
-module.exports = centralGame;
+module.exports = {centralGame};
