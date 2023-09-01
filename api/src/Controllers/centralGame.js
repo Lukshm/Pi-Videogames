@@ -7,7 +7,7 @@ const {getDbData} = require ('./getDbData');
 const centralGame = async () => {
     const apiData = await getApiData();
     const dbData = await getDbData();
-    const totalData = dbData.concat(apiData);
+    const totalData = [...apiData, ...dbData]
     return totalData;
 }
 
