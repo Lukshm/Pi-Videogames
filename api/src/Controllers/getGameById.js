@@ -7,9 +7,9 @@ const {API_KEY} = process.env;
 
 const getGameById = async (req, res) => {
     
-    const {idVideogame} = req.params;
+    const {idVideogame} = req.params;  //si viene por param el id
     
-    if(Number(idVideogame)){
+    if(Number(idVideogame)){ // el id que entra es string, entonces lo pasamos a number.  Si lo puedo pasar a Number busca la api
         try{
             const {data} = await axios.get(`${URL}${idVideogame}?key=${API_KEY}`)
             return data ? res.status (200).json(data) : res.status(404).send('Not Found')
@@ -23,7 +23,7 @@ const getGameById = async (req, res) => {
             include: {
             model: Genre,
             attributes:['name'],
-            throgh:{
+            through:{
                 attributes:[]
             }
             }});
@@ -34,6 +34,7 @@ const getGameById = async (req, res) => {
                 res.status(200).json(gameInDb)
             }
         } catch (error) {
+            res.status(404).send(error.nessage)
         }
     }
    

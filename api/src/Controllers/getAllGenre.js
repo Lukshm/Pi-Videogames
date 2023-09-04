@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const {Genre} = require ('../db')
-const { v4: uuidv4 } = require('uuid');
+
 const URL = 'https://api.rawg.io/api/genres'
 const {API_KEY} = process.env;
 
@@ -9,10 +9,10 @@ const {API_KEY} = process.env;
 
 const getAllGenre = async (req, res) => {
     try{
-        const apiUrl = await axios.get(`${URL}?key=${API_KEY}`);
-        const genreResults = apiUrl.data.results;
+        const apiUrl = await axios.get(`${URL}?key=${API_KEY}`); //hace la peticion a los generos de la api
+        const genreResults = apiUrl.data.results; 
         
-        genreResults.forEach(async (element) => {
+        genreResults.forEach(async (element) => { // aca los chequea si estan y si no estan los crea
             await Genre.findOrCreate({
                 where: {name: element.name}
               });
@@ -20,7 +20,7 @@ const getAllGenre = async (req, res) => {
         });
 
         
-        const allGenre = await Genre.findAll();
+        const allGenre = await Genre.findAll(); //los trae para mostrarlos
         
         return res.status(200).json(allGenre);
      
