@@ -18,7 +18,7 @@ const createGame = async (name, description, releaseDate, rating, platforms, ima
     })
     console.log(genreName);
 
-    if(genreName && genreName.length >0){
+    if(genreName && genreName.length > 0){
         const genres = await Genre.findAll({
             where:{
                 name: genreName,
