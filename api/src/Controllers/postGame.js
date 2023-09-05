@@ -2,8 +2,8 @@ const {createGame} = require ('./createGame')
 
 const postGame = async (req, res) =>{
 try{
-    const {name, description, releaseDate, rating, platforms, image, genreName} = req.body
-    const newGame = await createGame (name, description, releaseDate, rating, platforms, image, genreName)
+    const {name, description, releaseDate, rating, platforms, img, genreName} = req.body
+    const newGame = await createGame (name, description, releaseDate, rating, platforms, img, genreName)
     res.send(newGame).json
 } catch (error){
     console.log(error);
