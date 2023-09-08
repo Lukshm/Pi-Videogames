@@ -4,7 +4,7 @@ const {Videogame, Genre} = require('../db')
 const createGame = async (name, description, releaseDate, rating, platforms, img, genreName) =>{
     const gameCreated = await Videogame.findOne({where: {name}});
     if(gameCreated){
-        throw new Error(`Ya fue creado ${name}, wachin`)
+        throw new Error(`Ya fue creado ${name}`)
     }
 
     const game = await Videogame.create({
@@ -26,7 +26,7 @@ const createGame = async (name, description, releaseDate, rating, platforms, img
         })
         await game.setGenres(genres)
     }
-    return "Listo, esta creado titan!"
+    return "Juego Creado"
 }
 
 

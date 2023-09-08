@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.enter-btn{
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-2%, -40%);
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.enter-btn:hover{
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+.title{
+    position: absolute;
+    top: 35%;
+    left: 52%;
+    font-size: 4rem;
+    text-align: center;
+    color: white;
+	margin-top: 0;
+	text-transform: uppercase;
+	font-weight: 900;
+    
+}

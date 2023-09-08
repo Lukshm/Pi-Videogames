@@ -16,9 +16,9 @@ const Cards = () => {
 
   return (
     <div className={style.div}>
-        <h1>Adri no se la come mas, es un capo</h1>
+        
       {
-      allGames.length ? 
+      allGames?.length ? 
       allGames?.map((games, index) => {
       return(
         <Card
@@ -29,7 +29,7 @@ const Cards = () => {
       )
 
       })
-      : <h1>Loading...</h1>
+      : <h1>No exsiste el Juego</h1>
     }
 
 
