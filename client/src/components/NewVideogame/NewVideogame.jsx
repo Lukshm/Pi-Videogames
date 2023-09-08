@@ -8,20 +8,20 @@ function Create() {
 
   const [form, setForm] = useState({
     name: "",
-    background_image: "",
+    img: "",
     description: "",
     platforms: "",
-    released: "",
+    releaseDate: "",
     rating: "",
     genres: [],
   });
 
   const [errors, setErrors] = useState({
     name: "",
-    background_image: "",
+    img: "",
     description: "",
     platforms: "",
-    released: "",
+    releaseDate: "",
     rating: "",
     genres: [],
   });
@@ -47,12 +47,12 @@ function Create() {
     }
     if (form.name === "") updatedErrors.name = "";
     //VALIDACION DE IMAGEN (URL)
-    if (!/^(ftp|http|https):\/\/[^ "]+$/.test(form.background_image)) {
-      updatedErrors.background_image = "Debe ingresar una URL válida";
+    if (!/^(ftp|http|https):\/\/[^ "]+$/.test(form.img)) {
+      updatedErrors.img = "Debe ingresar una URL válida";
     } else {
-      updatedErrors.background_image = "";
+      updatedErrors.img = "";
     }
-    if (form.background_image === "") updatedErrors.background_image = "";
+    if (form.img === "") updatedErrors.img = "";
     //VALIDACION DE PLATAFORMAS
     if (!/^[a-zA-Z0-9\s!-]+$/.test(form.platforms)) {
       updatedErrors.platforms = "Sólo puede contener texto y números";
@@ -61,49 +61,49 @@ function Create() {
     }
     if (form.platforms === "") updatedErrors.platforms = "";
     //VALIDACION DE FECHA DE LANZAMIENTO
-    if (!/^[0-9/]*$/.test(form.released)) {
-      updatedErrors.released =
+    if (!/^[0-9/]*$/.test(form.releaseDate)) {
+      updatedErrors.releaseDate =
         "Formato de fecha inválido. Utilice solo números y /";
     } else {
       // Verificar la entrada del día
-      if (form.released.length >= 1 && form.released.length <= 2) {
-        const day = parseInt(form.released);
+      if (form.releaseDate.length >= 1 && form.releaseDate.length <= 2) {
+        const day = parseInt(form.releaseDate);
         if (isNaN(day) || day <= 0 || day > 31) {
-          updatedErrors.released = "Día inválido";
+          updatedErrors.releaseDate = "Día inválido";
         } else {
-          updatedErrors.released = "";
+          updatedErrors.releaseDate = "";
         }
       }
 
       // Verificar la entrada del mes
-      if (form.released.length >= 4 && form.released.length <= 5) {
-        const month = parseInt(form.released.substring(3));
+      if (form.releaseDate.length >= 4 && form.releaseDate.length <= 5) {
+        const month = parseInt(form.releaseDate.substring(3));
         if (isNaN(month) || month <= 0 || month > 12) {
-          updatedErrors.released = "Mes inválido";
+          updatedErrors.releaseDate = "Mes inválido";
         } else {
-          updatedErrors.released = "";
+          updatedErrors.releaseDate = "";
         }
       }
 
       // Verificar la entrada del año
-      if (form.released.length >= 7 && form.released.length <= 8) {
-        const year = parseInt(form.released.substring(6));
+      if (form.releaseDate.length >= 7 && form.releaseDate.length <= 8) {
+        const year = parseInt(form.releaseDate.substring(6));
         if (isNaN(year)) {
-          updatedErrors.released = "Año inválido";
+          updatedErrors.releaseDate = "Año inválido";
         } else {
-          updatedErrors.released = "";
+          updatedErrors.releaseDate = "";
         }
       }
 
       // Verificar el formato completo de la fecha
-      if (form.released.length === 8) {
+      if (form.releaseDate.length === 8) {
         if (
-          !/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{2}$/.test(form.released)
+          !/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{2}$/.test(form.releaseDate)
         ) {
-          updatedErrors.released =
+          updatedErrors.releaseDate =
             "Formato de fecha inválido. Utilice yyyy/mm/dd";
         } else {
-          updatedErrors.released = "";
+          updatedErrors.releaseDate = "";
         }
       }
     }
@@ -125,12 +125,12 @@ function Create() {
       Object.values(errors).some((error) => error !== "") || noGenresSelected
     );
   };
-
+  
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-
-    if (property === "genres") {
+    
+   if (property === "genres") {
       const { checked } = event.target;
       const genre = event.target.value;
       console.log(genre);
@@ -187,11 +187,11 @@ function Create() {
             <label> Image: </label>
             <input
               type="text"
-              value={form.background_image}
+              value={form.img}
               onChange={changeHandler}
-              name="background_image"
+              name="img"
             />
-            {errors.background_image && <span>{errors.background_image}</span>}
+            {errors.img && <span>{errors.img}</span>}
           </div>
         </div>
         <div>
@@ -218,11 +218,11 @@ function Create() {
           <label> Fecha de lanzamiento: </label>
           <input
             type="text" //date
-            value={form.released}
+            value={form.releaseDate}
             onChange={changeHandler}
-            name="released"
+            name="releaseDate"
           />
-          {errors.released && <span>{errors.released}</span>}
+          {errors.releaseDate && <span>{errors.releaseDate}</span>}
         </div>
         <div>
           <label> Rating: </label>

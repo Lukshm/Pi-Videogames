@@ -27,12 +27,19 @@ export const setAllGames = () => {
 export const setGameById = (id) => {
     return async (dispatch) => {
         try {
-            const games = await getGamesById(id);
-            console.log(games);
-            return dispatch({
-                type: GET_GAME_BY_ID,
-                payload: games,
-            })
+            if(id === "reset"){ // para limpiar el payload del detail
+                return dispatch({
+                    type: GET_GAME_BY_ID,
+                    payload: {},
+                })
+            }else{
+                const games = await getGamesById(id);
+        
+                return dispatch({
+                    type: GET_GAME_BY_ID,
+                    payload: games,
+                })}
+            
         } catch (error) {
             console.log('server error!');
         }
@@ -99,9 +106,18 @@ export const filterByGenre = (genres) => {
 }
 
 export const postGame = (form) => {
-    return {
-            type: POST_GAME,
-            payload: form
+    return async (dispatch) =>{
+        try {
+            const newGame = await postVideogame(form);
+        
+            return dispatch({
+                type: POST_GAME,
+                payload: newGame,
+            })
+        } catch (error) {
+            console.log('server error!');
         }
+    };
+    
     
 }

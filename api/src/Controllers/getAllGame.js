@@ -12,7 +12,7 @@ const getAllGame = async (req, res) => {
     if(name){ //si viene por query 
         let vgName = await vgList.filter(vg => vg.name.toLowerCase().includes(name.toLowerCase()));
         vgName.length ? res.status(200).send(vgName):res.status(404).send(`no, el ultimo juego de ${name} se lo llevaron ayer`)
-        console.log(vgList);
+    
     } else{
         res.status(200).send(vgList)
         

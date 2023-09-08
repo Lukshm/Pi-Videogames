@@ -29,7 +29,7 @@ const Cards = () => {
       )
 
       })
-      : <h1>No exsiste el Juego</h1>
+      : <h1>Pera que esta cargando amigo...</h1>
     }
 
 

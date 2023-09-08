@@ -11,7 +11,9 @@ const Card = ({id, name, img}) =>{
 
             <h1 className={style.text}>{name}</h1>
             <Link to = {`/detail/${id}`} >
+            <div>
             <img className='image' src={img}></img>
+            </div>
             </Link>
         </div>
         </div>
