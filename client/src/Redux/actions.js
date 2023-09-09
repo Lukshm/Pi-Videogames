@@ -7,7 +7,9 @@ import { GET_ALL_GAMES,
             FILTERED_ORDER, 
             GET_API_OR_BD,
             FILTERED_GENRES,
-            POST_GAME } from "./actionTypes";
+            POST_GAME,
+            SET_CURRENT_PAGE,
+        } from "./actionTypes";
 
 export const setAllGames = () => {
     return async (dispatch) => {
@@ -121,3 +123,8 @@ export const postGame = (form) => {
     
     
 }
+
+export const setCurrentPage = (page) => ({
+    type: SET_CURRENT_PAGE,
+    payload: page,
+})

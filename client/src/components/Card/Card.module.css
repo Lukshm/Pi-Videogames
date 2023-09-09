@@ -15,7 +15,7 @@
     box-shadow: var(--box_shadow_card);
 }
 
-  .card{
+.card{
     width: 12rem;
     height: auto;
     padding: .8em;
@@ -29,6 +29,9 @@
    
   }
 
+  .imagen{
+    
+  }
   
   .text {
     font-weight: 900;
