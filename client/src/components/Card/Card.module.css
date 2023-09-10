@@ -1,68 +1,75 @@
-.cardContainer{
-    width: 260px;
-    height: 330px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    place-content: center;
-    place-items: center;
-    overflow: hidden;
-    background-color: rgba(37, 34, 40, 0.8);
-    box-shadow: 15px 15px 30px #bebebe,
-             -15px -15px 30px #ffffff;
-    border-radius: 20px;
-    box-shadow: var(--box_shadow_card);
+
+.cardContainer {
+  width: 260px;
+  height: 330px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  background-color: rgb(49, 37, 61);
+  border-radius: 20px;
 }
 
-.card{
-    width: 12rem;
-    height: auto;
-    padding: .8em;
-    display: flex;
-    color: white;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-   
-  }
+.card {
+  width: 100%;
+  padding: .8em;
+  display: flex;
+  color: white;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
 
-  .imagen{
-    
-  }
-  
-  .text {
-    font-weight: 900;
-    font-size: 1.2em;
-    line-height: 1.5;
-   }
-  
-  
-  .btn{
-    background-color: #F08080;
-    color: black;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    width: 4vw;
-    height: 3vh;
-    cursor: pointer;
-  }
+.imageContainer {
+  width: 100%; /* O el ancho que desees para la imagen */
+  height: 200px; /* O la altura que desees para la imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-  .data{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    font-size: 9px;
-    margin-top: 5px;
+.image {
+  width: 200px; 
+  height: 200px; /* Establece la altura deseada para todas las imágenes */
+  object-fit: cover; /* Escala la imagen para llenar el contenedor sin distorsionar la relación de aspecto */
+  border-radius: 50%; 
+}
 
-  }
+/* Estilo para el contenedor del texto */
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  line-height: 1.2; 
+  color: rgb(1, 2, 3);
+}
 
-  .hearth {
-    width: 21vw;
-  }
-  
-  
+
+.text {
+  font-weight: 900;
+  font-size: 1.2em;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  margin: 5px; 
+}
+
+.link{
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+.cardContainer:hover {
+  background-color: rgb(58, 12, 58);
+}

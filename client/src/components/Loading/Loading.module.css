@@ -1,0 +1,27 @@
+.progress {
+    background-color: #ffffff;
+    width: 220px;
+    height: 20px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    transform: skew(150deg);
+  }
+  
+  .inner {
+    background-image: linear-gradient(to right bottom, #1d2671, #4b2776, #6d2677, #8c2674, #a62a6f, #a73071, #a93572, #aa3a74, #943e7b, #7c417e, #65437c, #4e4376);
+    height: 100%;
+    transform-origin: left;
+    transform: skew(-150deg);
+    animation: progress 1.8s infinite;
+  }
+  
+  @keyframes progress {
+    0% {
+      transform: scaleX(10%) translateX(-10%);
+    }
+  
+    100% {
+      transform: scaleX(90%) translateX(150%);
+    }
+  }
+  

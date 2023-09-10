@@ -41,7 +41,7 @@ function Create() {
     } else {
       updatedErrors.name = "";
     }
-    const nameMaxLength = 40; // Reemplaza 100 con el valor máximo admitido por el modelo
+    const nameMaxLength = 100; // Reemplaza 100 con el valor máximo admitido por el modelo
     if (form.name.length > nameMaxLength) {
       updatedErrors.name = `El nombre no puede superar los ${nameMaxLength} caracteres.`;
     }

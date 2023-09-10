@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setGameById } from "../../Redux/actions";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import "../Detail/Detail.css";
+import styles from "../Detail/Detail.module.css";
 
 const Detail = () => {
   const { id } = useParams();
@@ -15,16 +15,16 @@ const Detail = () => {
   useEffect(() => {
     dispatch(setGameById(id));
     const reset = () => {
-      dispatch(setGameById("reset"))
-    }
+      dispatch(setGameById("reset"));
+    };
     return reset();
   }, [id, dispatch]);
-  
-  useEffect(() =>{
-    if(game.id){
+
+  useEffect(() => {
+    if (game.id) {
       setLoader(false);
     }
-  },[game])
+  }, [game]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -32,30 +32,42 @@ const Detail = () => {
 
   return (
     <div>
-    {loader ? <Loading/> : <section className="detail-section">
-    {game.id && (
-      <div className="detail-container">
-      <div className="detail-box">
-      <img className="detail-image" src={game.img} alt={game.name} />
-          <h2>
-            {game.genres && game.genres.map((genre) => genre.name).join(", ")}
-          </h2>
-          <div className="titles">
-            <h1>{game.name}</h1>
-            <h2>
-              {game.releaseDate} rating:{game.rating}
-            </h2>
-          </div>
-          <h2>ID: {game.id}</h2>
-          <p className="detail-description">{game.description}</p>
-          {/* Mostrar los nombres de las plataformas */}
-          <h2>Plataformas: {game.platforms}</h2>
-        </div>
-      </div>
-    )}
-    </section> }
+      {loader ? (
+        <Loading />
+      ) : (
+        <section className={styles["detail-section"]}>
+          {game.id && (
+            <div className={styles["detail-container"]}>
+              <div className={styles["detail-box"]}>
+                <img
+                  className={styles["detail-image"]}
+                  src={game.img}
+                  alt={game.name}
+                />
+               
+                <div className={styles["titles"]}>
+                  <h1>{game.name}</h1>
+                  <h2>
+                  {game.genres &&
+                    game.genres.map((genre) => genre.name).join(", ")}
+                  </h2>
+                  <h2>
+                    Released on: {game.releaseDate} 
+                  </h2>
+                    <h2>rating: {game.rating}</h2>
+                </div>
+                <h2>ID: {game.id}</h2>
+                <p className={styles["detail-description"]}>
+                  {game.description}
+                </p>
+
+                <h2>Plataformas: {game.platforms}</h2>
+              </div>
+            </div>
+          )}
+        </section>
+      )}
     </div>
-    
   );
 };
 

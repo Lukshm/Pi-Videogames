@@ -1,12 +1,12 @@
-import React from 'react'
-
+import React from 'react';
+import styles from './Loading.module.css';
 
 const Loading = () => {
   return (
-    <div className='line'>
-    <h1 className='lineUp'>Loading...</h1>
+    <div className={styles.progress}>
+      <div className={styles.inner}></div>
     </div>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

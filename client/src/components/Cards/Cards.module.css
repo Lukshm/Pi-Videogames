@@ -1,10 +1,58 @@
-.div{
+body {
+  background-image: url('../../assets/shovel-knight-game-wallpaper-3554x1999_53.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+
+.container {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.cardsContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  max-width: 900px;
   margin-top: 2em;
+  gap: 1em;
+  margin-bottom: 5em;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.7px);
+  -webkit-backdrop-filter: blur(6.7px);
+  border: 10px solid rgba(255, 255, 255, 0.1)
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.paginationBtn {
+  background-color: #52336e;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 0.5em 1em;
+  margin: -2em 0.5em 0.5em 0.5em; /* Margen negativo en la parte superior */
+  cursor: pointer;
+}
+
+.paginationBtnNext {
+  background-color: #52336e;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 0.5em 2em;
+  margin: -2em 0.5em 0.5em 0.5em; /* Margen negativo en la parte superior */
+  cursor: pointer;
 }
 

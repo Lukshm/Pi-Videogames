@@ -1,36 +1,36 @@
-import {React, useState} from 'react'
-import {useDispatch } from 'react-redux'
-
-import {setGameByName } from '../../Redux/actions'
-
-
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setGameByName } from '../../Redux/actions';
+import styles from './SearchBar.module.css'; 
 const SearchBar = () => {
-
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-  
 
-  function handleInputChange(event){
-    setGameByName(event.target.value);
+  function handleInputChange(event) {
     setName(event.target.value);
   }
-  function handleSubmit(){
+
+  function handleSubmit() {
     dispatch(setGameByName(name));
   }
-  
+
   return (
-    <div>
-
-    
-    <input type='search'
-    placeholder='Buscar...'
-    value={name}
-    onChange={handleInputChange}>
-    </input>
-    <button onClick={handleSubmit}>Search</button>
-    
+    <div className={styles.container}>
+      <input
+        className={styles.input} 
+        type="search"
+        placeholder="Buscar..."
+        value={name}
+        onChange={handleInputChange}
+      />
+      <button
+        className={styles.button}
+        onClick={handleSubmit}
+      >
+        Search
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;

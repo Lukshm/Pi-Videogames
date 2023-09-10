@@ -1,0 +1,45 @@
+/* Home.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente */
+    height: 100vh; /* Ajusta la altura al 100% del viewport */
+    margin-top: 2em; /* Agrega espacio en la parte superior */
+  }
+  
+  /* Estilos para los selectores */
+  .selectors {
+    display: flex;
+    flex-direction: row; /* Cambia la dirección a horizontal */
+    align-items: center;
+    margin-top: 1em;
+  }
+  
+  .selectors select {
+    padding: 0.5em;
+    margin: 0.3em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f7f7f7;
+  }
+  
+  .selectors button {
+    padding: 0.5em 1em;
+    margin: 0.3em;
+    border: none;
+    border-radius: 5px;
+    background-color: #52336e;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #382d4b; /* Cambiamos el color al pasar el cursor */
+  }
+  
+  button:focus {
+    outline: none; /* Quitamos el contorno al hacer clic en el botón */
+  }
