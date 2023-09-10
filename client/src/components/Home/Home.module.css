@@ -3,16 +3,16 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra horizontalmente */
-    justify-content: center; /* Centra verticalmente */
-    height: 100vh; /* Ajusta la altura al 100% del viewport */
-    margin-top: 2em; /* Agrega espacio en la parte superior */
+    align-items: center;
+    justify-content: center; 
+    height: 100vh;
+    margin-top: 2em; 
   }
   
-  /* Estilos para los selectores */
+
   .selectors {
     display: flex;
-    flex-direction: row; /* Cambia la dirección a horizontal */
+    flex-direction: row;
     align-items: center;
     margin-top: 1em;
   }
@@ -27,8 +27,8 @@
   }
   
   .selectors button {
-    padding: 0.5em 1em;
-    margin: 0.3em;
+    padding: 0.5em 2em;
+    margin: 0.5em;
     border: none;
     border-radius: 5px;
     background-color: #52336e;
@@ -37,9 +37,9 @@
   }
   
   button:hover {
-    background-color: #382d4b; /* Cambiamos el color al pasar el cursor */
+    background-color: #382d4b; 
   }
   
   button:focus {
-    outline: none; /* Quitamos el contorno al hacer clic en el botón */
+    outline: none;
   }

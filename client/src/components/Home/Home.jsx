@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAllGenres, setGameByName, orderCards, setOrder, filterByGenre } from '../../Redux/actions';
+import { setAllGenres, setGameByName, orderCards, setOrder, filterByGenre, gamesOrigin } from '../../Redux/actions';
 import SearchBar from '../SearchBar/SearchBar';
 import Cards from '../Cards/Cards';
 import styles from './Home.module.css'; 
@@ -12,7 +12,6 @@ const Home = () => {
   const dispatch = useDispatch();
   const genreRes= useSelector((state)=> state.getAllGenres);
   const [order, setLocalOrder] = useState('')
-  const [aux, setAux] = useState(false);
   const [filterGenres, setFilterGenres] = useState('')
   const orderChosen = useSelector((state) => state.allGames)
   
@@ -45,6 +44,10 @@ const Home = () => {
    
    }
   
+   const filterOrigin = (e) => {
+    const { value } = e.target;
+    dispatch(gamesOrigin(value));
+  };
   //  const handleOrder = (event)=>{
   //   dispatch(orderCards(event.target.value));
   //   setAux(!aux)
@@ -53,7 +56,6 @@ const Home = () => {
     <div className={styles.container}>
       <SearchBar />
       <div className={styles.selectors}>
-        {/* Selector de orden */}
         <select value={order} onChange={handleSort}>
           {['Select order', 'A-Z', 'Z-A', 'Best rated', 'Least rated'].map((order, index) => (
             <option key={index} value={order}>
@@ -61,14 +63,7 @@ const Home = () => {
             </option>
           ))}
         </select>
-  
-       
-        {/* <select onChange={handleOrder}>
-          <option value="A">Ascendente</option>
-          <option value="D">Descendente</option>
-        </select>
-   */}
-        {/* Selector de géneros */}
+
         <select onChange={handleFilterGenres} value={filterGenres}>
           <option value="AllGenres">Genres</option>
           {genreRes.map((genre, index) => (
@@ -78,12 +73,12 @@ const Home = () => {
           ))}
         </select>
   
-  
-        {/* Selector de fuente de datos */}
-        <select>
-          <option value="API">API</option>
-          <option value="BD">Created</option>
-        </select>
+        <select name="Origin" onChange={filterOrigin}>
+            <optgroup label="Origin">
+              <option value="api">API</option>
+              <option value="db">DB</option>
+            </optgroup>
+          </select>
         <button onClick={handleReset}>Reset Filter</button>
       </div>
   

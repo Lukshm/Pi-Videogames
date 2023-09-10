@@ -8,8 +8,8 @@
   }
   
   .searchContainer {
-    display: flex;
-    align-items: center; 
+    margin-left: 20px;
+    margin-top:10px ;
   }
   
   .input {
@@ -21,7 +21,8 @@
   }
   
   button {
-    padding: 17px 40px;
+    margin-top: 5px;
+    padding: 8px;
     border-radius: 10px;
     border: 0;
     background-color: rgb(70, 21, 99);

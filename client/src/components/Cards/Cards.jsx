@@ -18,7 +18,7 @@ const Cards = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentGames = allGames.slice(indexOfFirstItem, indexOfLastItem);
+  const currentGames = allGames?.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (newPage) => {
     dispatch(setCurrentPage(newPage));

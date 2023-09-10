@@ -6,7 +6,9 @@ import {
   ALPHABETICAL_ORDER,
   FILTERED_GENRES,
   POST_GAME,
-  SET_CURRENT_PAGE
+  SET_CURRENT_PAGE,
+  GAMES_ORIGIN
+
 } from "./actionTypes";
 
 const initialState = {
@@ -86,6 +88,37 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     }
+
+    case GAMES_ORIGIN : {
+      let originGames = [...state.allGamesCopy]
+      if(action.payload === 'All'){
+          return {
+              ...state,
+              allGames: [...state.allGamesCopy]
+          }
+      }
+      if(action.payload === 'api') {
+          const apiGames = originGames.filter((game) => Number.isInteger(game.id))
+          console.log(apiGames)
+
+          return{
+              ...state,
+              allGames: apiGames
+          }
+      }
+
+      if (action.payload === 'db') {
+          const uuidv4Pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+          const dbGames = originGames.filter((game) => uuidv4Pattern.test(game.id));
+          console.log(dbGames)
+
+          return {
+            ...state,
+            allGames: dbGames,
+          };
+        }
+  }
     default:
       return { ...state };
   }

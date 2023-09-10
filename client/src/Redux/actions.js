@@ -5,10 +5,10 @@ import { GET_ALL_GAMES,
             GET_BY_NAME,
             ALPHABETICAL_ORDER, 
             FILTERED_ORDER, 
-            GET_API_OR_BD,
             FILTERED_GENRES,
             POST_GAME,
             SET_CURRENT_PAGE,
+            GAMES_ORIGIN
         } from "./actionTypes";
 
 export const setAllGames = () => {
@@ -29,7 +29,7 @@ export const setAllGames = () => {
 export const setGameById = (id) => {
     return async (dispatch) => {
         try {
-            if(id === "reset"){ // para limpiar el payload del detail
+            if(id === "reset"){ 
                 return dispatch({
                     type: GET_GAME_BY_ID,
                     payload: {},
@@ -91,14 +91,6 @@ return {
     payload: order}
 }
 
-export const getGamesByOrigin = (payload) => {
-return {
-    type: GET_API_OR_BD,
-    payload
-}
-
-}
-
 export const filterByGenre = (genres) => {
  
     return {
@@ -128,3 +120,10 @@ export const setCurrentPage = (page) => ({
     type: SET_CURRENT_PAGE,
     payload: page,
 })
+
+export const gamesOrigin = (order) => {
+    return {
+        type: GAMES_ORIGIN,
+        payload: order
+    }
+}

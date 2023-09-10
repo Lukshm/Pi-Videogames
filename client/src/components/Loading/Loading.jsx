@@ -5,6 +5,8 @@ const Loading = () => {
   return (
     <div className={styles.progress}>
       <div className={styles.inner}></div>
+      <br />
+      <br />
     </div>
   );
 };

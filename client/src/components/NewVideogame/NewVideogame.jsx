@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAllGenres, postGame } from "../../Redux/actions";
-import { Link } from "react-router-dom";
+import styles from "./NewVideogame.module.css"
 
 function Create() {
   const dispatch = useDispatch();
@@ -170,79 +170,81 @@ function Create() {
 
   return (
     <div>
-      <Link to="/home"> Back Home</Link>
-      <form onSubmit={submitHandler}>
-        <div>
-          <div>
-            <label className="formText"> Nombre: </label>
+     <br />
+      <form onSubmit={submitHandler} className={styles.formContainer}>
+        <div className={styles.formSection}>
+          <div className={styles.formField}>
+            <br />
+            <label className={styles.formText}> Nombre: </label>
             <input
               type="text"
               value={form.name}
               onChange={changeHandler}
               name="name"
             />
-            {errors.name && <span>{errors.name}</span>}
+            {errors.name && <span className={styles.error}>{errors.name}</span>}
           </div>
-          <div>
-            <label> Image: </label>
+          <div className={styles.formField}>
+            <label className={styles.formText}> Image: </label>
             <input
               type="text"
               value={form.img}
               onChange={changeHandler}
               name="img"
             />
-            {errors.img && <span>{errors.img}</span>}
+            {errors.img && <span className={styles.error}>{errors.img}</span>}
           </div>
         </div>
-        <div>
-          <label> Descripción: </label>
+        <div className={styles.formSection}>
+          <label className={styles.formText}> Descripción: </label>
           <input
             type="text"
             value={form.description}
             onChange={changeHandler}
             name="description"
           />
-          {errors.description && <span>{errors.description}</span>}
+          {errors.description && <span className={styles.error}>{errors.description}</span>}
         </div>
-        <div>
-          <label> Plataformas: </label>
+        <div className={styles.formSection}>
+          <label className={styles.formText}> Plataformas: </label>
           <input
             type="text"
             value={form.platforms}
             onChange={changeHandler}
             name="platforms"
           />
-          {errors.platforms && <span>{errors.platforms}</span>}
+          {errors.platforms && <span className={styles.error}>{errors.platforms}</span>}
         </div>
-        <div>
-          <label> Fecha de lanzamiento: </label>
+        <div className={styles.formSection}>
+          <label className={styles.formText}> Fecha de lanzamiento: </label>
           <input
             type="text" //date
             value={form.releaseDate}
             onChange={changeHandler}
             name="releaseDate"
           />
-          {errors.releaseDate && <span>{errors.releaseDate}</span>}
+          {errors.releaseDate && <span className={styles.error}>{errors.releaseDate}</span>}
         </div>
-        <div>
-          <label> Rating: </label>
+        <div className={styles.formSection}>
+          <label className={styles.formText}> Rating: </label>
           <input
             type="text"
             value={form.rating}
             onChange={changeHandler}
             name="rating"
           />
-          {errors.rating && <span>{errors.rating}</span>}
+          {errors.rating && <span className={styles.error}>{errors.rating}</span>}
         </div>
-        <div>
+        <div className={styles.formSection}>
           {allGenres?.map((genre) => (
-            <span key={genre.id}>
+            <span key={genre.id} className={styles.genre}>
               {genre.name}
               <input
                 type="checkbox"
                 name="genres"
                 value={genre.id}
                 onChange={changeHandler}
+                className={styles.genreCheckbox}
               />
             </span>
           ))}
@@ -252,10 +254,17 @@ function Create() {
           disabled={
             !Object.values(form).every((value) => value !== "") || hasErrors()
           }
+          className={styles.submitButton}
         >
-          {" "}
-          SUBMIT{" "}
+          SUBMIT
         </button>
+
+        {hasErrors() && (
+          <div className={styles.errorContainer}>
+            Por favor, corrija los errores antes de enviar.
+          </div>
+        )}
+        <br />
       </form>
     </div>
   );

@@ -2,10 +2,13 @@
     background-color: rgb(61, 29, 77);
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    height: 70px; /* Ajusta la altura según tus preferencias */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agregamos una sombra ligera */
+    height: 70px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    margin-top: -10px;
+    margin-left: -10px;
+    padding-right: 20px;
   }
   
   button {
@@ -14,15 +17,15 @@
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
-    margin: 0 10px; /* Ajusta el espaciado entre los botones */
+    margin: 0 10px;
     cursor: pointer;
   }
   
   button:hover {
-    background-color: #382d4b; /* Cambiamos el color al pasar el cursor */
+    background-color: #382d4b;
   }
   
   button:focus {
-    outline: none; /* Quitamos el contorno al hacer clic en el botón */
+    outline: none;
   }
   
