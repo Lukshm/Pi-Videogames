@@ -17,6 +17,45 @@
     text-align: center;
   }
   
+
+.videogamesBackground {
+  background-image: url('../../assets/b2e78bc48c6e63f0450945c3578d7ff0.png');
+  width: 500px;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.button {
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 0;
+  background-color: rgb(70, 21, 99);
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  transition: all .3s ease;
+  box-shadow: rgb(45, 31, 78) 0px 10px 0px 0px;
+  color: hsl(0, 0%, 100%);
+ }
+
+.button:hover {
+  box-shadow: rgb(83, 27, 100) 0px 7px 0px 0px;
+ }
+
+.button:focus {
+  outline: none; 
+}
+
+.button:active {
+  background-color: rgb(90, 25, 85);
+  /*50, 168, 80*/
+  box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px;
+  transform: translateY(5px);
+  transition: 200ms;
+ }
+
   .enter-btn {
     background: rgba(0, 0, 0, 0.5);
     border: none;
