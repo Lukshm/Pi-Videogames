@@ -33,7 +33,8 @@ export const getGamesByName = async (name) => {
     );
     return response.data;
   } catch (error) {
-    console.log("no se encontraron juegos");
+    alert("no se encontraron juegos");
+    return await getAllGames();
   }
 };
 

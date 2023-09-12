@@ -18,7 +18,7 @@ const Cards = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentGames = allGames?.slice(indexOfFirstItem, indexOfLastItem);
+  const currentGames = allGames.slice(indexOfFirstItem, indexOfLastItem);
 
   const handlePageChange = (newPage) => {
     dispatch(setCurrentPage(newPage));
@@ -26,6 +26,8 @@ const Cards = () => {
 
   return (
     <div className={style.container}>
+      
+      
       {currentGames.length > 0 ? (
         <div
           className={style.cardsContainer}
@@ -52,6 +54,9 @@ const Cards = () => {
         >
           Previous
         </button>
+        
+        <span className={style.pages}>Page {currentPage} / {Math.ceil(allGames.length / itemsPerPage)}</span>
+
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentGames.length < itemsPerPage}

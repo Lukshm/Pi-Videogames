@@ -26,6 +26,8 @@ function Create() {
     genres: [],
   });
 
+  
+
   const allGenres = useSelector((state) => state.getAllGenres);
   console.log(allGenres);
 
@@ -36,8 +38,8 @@ function Create() {
   const validate = (form) => {
     const updatedErrors = {};
     //VALIDACION DEL NOMBRE
-    if (!/^[a-zA-Z0-9\s]+$/.test(form.name)) {
-      updatedErrors.name = "Sólo puede contener letras y/o números";
+    if (!/^[a-zA-Z0-9\s!:]+$/.test(form.name)) {
+      updatedErrors.name = "Sólo puede contener letras, números y algunos simbolos";
     } else {
       updatedErrors.name = "";
     }
@@ -163,8 +165,17 @@ function Create() {
     event.preventDefault();
     console.log(form);
    
-      dispatch(postGame(form));
-      alert("Juego creado");
+    dispatch(postGame(form));
+    alert("Created Game!");
+    setForm({
+      name: "",
+      img: "",
+      description: "",
+      platforms: "",
+      releaseDate: "",
+      rating: "",
+      genres: [],
+    });
   
   };
 
@@ -235,7 +246,7 @@ function Create() {
           />
           {errors.rating && <span className={styles.error}>{errors.rating}</span>}
         </div>
-        <div className={styles.formSection}>
+        <div className={styles.genreContainer }>
           {allGenres?.map((genre) => (
             <span key={genre.id} className={styles.genre}>
               {genre.name}
