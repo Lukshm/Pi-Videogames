@@ -100,10 +100,10 @@ export const filterByGenre = (genres) => {
 }
 
 export const postGame = (form) => {
+    console.log(form);
     return async (dispatch) =>{
         try {
             const newGame = await postVideogame(form);
-        
             return dispatch({
                 type: POST_GAME,
                 payload: newGame,

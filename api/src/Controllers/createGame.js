@@ -14,17 +14,15 @@ const createGame = async (name, description, releaseDate, rating, platforms, img
         rating,
         platforms,
         img
-
     })
-    
+   
 
     if(genreName && genreName.length > 0){
-        const genres = await Genre.findAll({
-            where:{
-                name: genreName,
-            },
-        })
-        await game.setGenres(genres)
+        
+        genreName.map(async (id)=>{const genreFound = await Genre.findByPk(id) 
+            await game.setGenres(genreFound)}) //lo mapeo para recorrerlo y por cada id busca en la bd el genero que concide con el ID y el juego que creo le seteo ese genero
+        
+        
     }
     return "Juego Creado"
 }

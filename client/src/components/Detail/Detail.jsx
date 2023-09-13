@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setGameById } from "../../Redux/actions";
+import { setGameById} from "../../Redux/actions";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import styles from "../Detail/Detail.module.css";
@@ -29,7 +29,7 @@ const Detail = () => {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-
+  console.log(game);
   return (
     <div>
       {loader ? (
@@ -48,8 +48,8 @@ const Detail = () => {
                 <div className={styles["titles"]}>
                   <h1>{game.name}</h1>
                   <h2>
-                  {game.genres &&
-                    game.genres.map((genre) => genre.name).join(", ")}
+                  {game.genres ?
+                    game.genres.map((genre) => genre.name).join(", "): game.Genres.map((genre) => genre.name).join(", ")}
                   </h2>
                   <h2>
                     Released on: {game.releaseDate} 

@@ -13,7 +13,7 @@ function Create() {
     platforms: "",
     releaseDate: "",
     rating: "",
-    genres: [],
+    genreName: [],
   });
 
   const [errors, setErrors] = useState({
@@ -23,13 +23,13 @@ function Create() {
     platforms: "",
     releaseDate: "",
     rating: "",
-    genres: [],
+    genreName: [],
   });
 
   
 
   const allGenres = useSelector((state) => state.getAllGenres);
-  console.log(allGenres);
+ 
 
   useEffect(() => {
     dispatch(setAllGenres());
@@ -122,7 +122,7 @@ function Create() {
   };
 
   const hasErrors = () => {
-    const noGenresSelected = form.genres.length === 0;
+    const noGenresSelected = form.genreName.length === 0;
     return (
       Object.values(errors).some((error) => error !== "") || noGenresSelected
     );
@@ -132,20 +132,20 @@ function Create() {
     const property = event.target.name;
     const value = event.target.value;
     
-   if (property === "genres") {
+   if (property === "genreName") {
       const { checked } = event.target;
       const genre = event.target.value;
-      console.log(genre);
+      
 
       if (checked) {
         setForm((form) => ({
           ...form,
-          genres: [...form.genres, genre],
+          genreName: [...form.genreName, genre],
         }));
       } else {
         setForm((prevForm) => ({
           ...prevForm,
-          genres: prevForm.genres.filter((g) => g !== genre),
+          genreName: prevForm.genreName.filter((g) => g !== genre),
         }));
       }
     } else {
@@ -154,7 +154,7 @@ function Create() {
         [property]: value,
       }));
     }
-    console.log(form);
+  
     validate({
       ...form,
       [property]: value,
@@ -163,7 +163,7 @@ function Create() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    
    
     dispatch(postGame(form));
     alert("Created Game!");
@@ -174,7 +174,7 @@ function Create() {
       platforms: "",
       releaseDate: "",
       rating: "",
-      genres: [],
+      genreName: [],
     });
   
   };
@@ -252,7 +252,7 @@ function Create() {
               {genre.name}
               <input
                 type="checkbox"
-                name="genres"
+                name="genreName"
                 value={genre.id}
                 onChange={changeHandler}
                 className={styles.genreCheckbox}
