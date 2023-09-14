@@ -13,15 +13,16 @@ const Cards = () => {
   const cardsContainerRef = useRef(null);
 
   useEffect(() => {
-    dispatch(setAllGames());
+    dispatch(setAllGames()); //dispatch de los games
   }, [dispatch]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentGames = allGames.slice(indexOfFirstItem, indexOfLastItem);
+  const currentGames = allGames.slice(indexOfFirstItem, indexOfLastItem); //paginado
+
 
   const handlePageChange = (newPage) => {
-    dispatch(setCurrentPage(newPage));
+    dispatch(setCurrentPage(newPage)); // handel del paginado
   };
 
   return (
@@ -33,7 +34,7 @@ const Cards = () => {
           className={style.cardsContainer}
           ref={cardsContainerRef}
         >
-          {currentGames.map((game) => (
+          {currentGames.map((game) => ( //traigo los games y los recorro con un map para mostrarlos
             <Card
               key={game?.id}
               id={game?.id}
@@ -48,17 +49,17 @@ const Cards = () => {
 
       <div className={style.pagination}>
         <button
-          onClick={() => handlePageChange(currentPage - 1)}
+          onClick={() => handlePageChange(currentPage - 1)} //boton de p
           disabled={currentPage === 1}
           className={style.paginationBtn}
         >
           Previous
         </button>
         
-        <span className={style.pages}>Page {currentPage} / {Math.ceil(allGames.length / itemsPerPage)}</span>
+        <span className={style.pages}>Page {currentPage} / {Math.ceil(allGames.length / itemsPerPage)}</span> 
 
         <button
-          onClick={() => handlePageChange(currentPage + 1)}
+          onClick={() => handlePageChange(currentPage + 1)} //boton de next
           disabled={currentGames.length < itemsPerPage}
           className={style.paginationBtnNext}
         >

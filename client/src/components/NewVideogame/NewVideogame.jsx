@@ -5,7 +5,7 @@ import styles from "./NewVideogame.module.css"
 
 function Create() {
   const dispatch = useDispatch();
-
+  //estado inicial del formulario
   const [form, setForm] = useState({
     name: "",
     img: "",
@@ -15,7 +15,7 @@ function Create() {
     rating: "",
     genreName: [],
   });
-
+  //estado inicial de los errores
   const [errors, setErrors] = useState({
     name: "",
     img: "",
@@ -165,7 +165,7 @@ function Create() {
     event.preventDefault();
     
    
-    dispatch(postGame(form));
+    dispatch(postGame(form)); //para cuando se envia el formulario se vacie el form
     alert("Created Game!");
     setForm({
       name: "",
@@ -272,7 +272,7 @@ function Create() {
 
         {hasErrors() && (
           <div className={styles.errorContainer}>
-            Por favor, corrija los errores antes de enviar.
+            Los campos deben ser completados antes de contiunar
           </div>
         )}
         <br />

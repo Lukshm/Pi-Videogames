@@ -48,10 +48,7 @@ const Home = () => {
     const { value } = e.target;
     dispatch(gamesOrigin(value));
   };
-  //  const handleOrder = (event)=>{
-  //   dispatch(orderCards(event.target.value));
-  //   setAux(!aux)
-  // };
+
   return (
     <div className={styles.container}>
       <SearchBar />
