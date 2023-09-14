@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {updateVideogame} from '../../Utils/apiFunctions'
+import { updateVideogame } from "../../Utils/apiFunctions";
 import { useParams } from "react-router-dom";
-import styles from "./UpdateVideogame.module.css"
-import {setGameById} from "../../Redux/actions";
+import styles from "./UpdateVideogame.module.css";
+import { setGameById } from "../../Redux/actions";
 
 function Update() {
-   const dispatch = useDispatch();
-    const { id } = useParams();
-   const game = useSelector((state) => state.getGameById);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const game = useSelector((state) => state.getGameById);
   //estado inicial del formulario
   const [form, setForm] = useState({
     name: game?.name,
@@ -39,7 +39,8 @@ function Update() {
     const updatedErrors = {};
     //VALIDACION DEL NOMBRE
     if (!/^[a-zA-Z0-9\s!:]+$/.test(form.name)) {
-      updatedErrors.name = "Sólo puede contener letras, números y algunos simbolos";
+      updatedErrors.name =
+        "Sólo puede contener letras, números y algunos simbolos";
     } else {
       updatedErrors.name = "";
     }
@@ -100,7 +101,9 @@ function Update() {
       // Verificar el formato completo de la fecha
       if (form.releaseDate.length === 8) {
         if (
-          !/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{2}$/.test(form.releaseDate)
+          !/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{2}$/.test(
+            form.releaseDate
+          )
         ) {
           updatedErrors.releaseDate =
             "Formato de fecha inválido. Utilice yyyy/mm/dd";
@@ -121,24 +124,22 @@ function Update() {
     setErrors(updatedErrors);
   };
 
-  
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
     setForm((prevForm) => ({
-        ...prevForm,
-        [property]: value,
-      }));
+      ...prevForm,
+      [property]: value,
+    }));
     validate({
       ...form,
       [property]: value,
     });
-    
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    updateVideogame(form,id); //para cuando se envia el formulario se vacie el form
+    updateVideogame(form, id); //para cuando se envia el formulario se vacie el form
     setForm({
       name: "",
       img: "",
@@ -147,18 +148,15 @@ function Update() {
       releaseDate: "",
       rating: "",
     });
-  
   };
 
   const hasErrors = () => {
-    return (
-      Object.values(errors).some((error) => error !== "")
-    );
+    return Object.values(errors).some((error) => error !== "");
   };
 
   return (
     <div>
-     <br />
+      <br />
       <form onSubmit={submitHandler} className={styles.formContainer}>
         <div className={styles.formSection}>
           <div className={styles.formField}>
@@ -191,7 +189,9 @@ function Update() {
             onChange={changeHandler}
             name="description"
           />
-          {errors.description && <span className={styles.error}>{errors.description}</span>}
+          {errors.description && (
+            <span className={styles.error}>{errors.description}</span>
+          )}
         </div>
         <div className={styles.formSection}>
           <label className={styles.formText}> Plataformas: </label>
@@ -201,7 +201,9 @@ function Update() {
             onChange={changeHandler}
             name="platforms"
           />
-          {errors.platforms && <span className={styles.error}>{errors.platforms}</span>}
+          {errors.platforms && (
+            <span className={styles.error}>{errors.platforms}</span>
+          )}
         </div>
         <div className={styles.formSection}>
           <label className={styles.formText}> Fecha de lanzamiento: </label>
@@ -211,7 +213,9 @@ function Update() {
             onChange={changeHandler}
             name="releaseDate"
           />
-          {errors.releaseDate && <span className={styles.error}>{errors.releaseDate}</span>}
+          {errors.releaseDate && (
+            <span className={styles.error}>{errors.releaseDate}</span>
+          )}
         </div>
         <div className={styles.formSection}>
           <label className={styles.formText}> Rating: </label>
@@ -221,7 +225,9 @@ function Update() {
             onChange={changeHandler}
             name="rating"
           />
-          {errors.rating && <span className={styles.error}>{errors.rating}</span>}
+          {errors.rating && (
+            <span className={styles.error}>{errors.rating}</span>
+          )}
         </div>
         <button
           type="submit"
