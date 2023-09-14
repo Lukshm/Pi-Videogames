@@ -11,24 +11,24 @@ const Home = () => {
   
   const dispatch = useDispatch();
   const genreRes= useSelector((state)=> state.getAllGenres);
-  const [order, setLocalOrder] = useState('')
   const [filterGenres, setFilterGenres] = useState('')
-  const orderChosen = useSelector((state) => state.allGames)
+  const [order, setLocalOrder] = useState('')
+  // const orderChosen = useSelector((state) => state.allGames)
   
   useEffect(()=>{
     dispatch(setAllGenres())
-    dispatch(setOrder(orderChosen))
+    // dispatch(setOrder(orderChosen))
     
   },[]);
   
-  useEffect(() => {
-    setLocalOrder(orderChosen)
+  // useEffect(() => {
+  //   setLocalOrder(orderChosen)
   
-   },[orderChosen])
+  //  },[orderChosen])
 
   const handleReset = ()=> {
     dispatch(setGameByName(''));
-    dispatch(setFilterGenres(""));
+    dispatch(filterByGenre(""));
     dispatch(orderCards(""));
     dispatch(setOrder(""));
   }

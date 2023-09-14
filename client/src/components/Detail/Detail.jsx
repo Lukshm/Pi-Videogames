@@ -4,6 +4,7 @@ import { setGameById} from "../../Redux/actions";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import styles from "../Detail/Detail.module.css";
+import Delete from "../Delete/Delete"
 
 const Detail = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const Detail = () => {
   return (
     <div>
       {loader ? (
-        <Loading />
+        <div className={styles.loading}><Loading /></div>
       ) : (
         <section className={styles["detail-section"]}>
           {game.id && (
@@ -62,6 +63,11 @@ const Detail = () => {
                 </p>
 
                 <h2>Plataformas: {game.platforms}</h2>
+                
+                {!Number(game.id)&&
+                  <Delete id={game.id}/>
+                }
+                
               </div>
             </div>
           )}

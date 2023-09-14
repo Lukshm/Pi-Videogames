@@ -13,7 +13,7 @@ const createGame = async (name, description, releaseDate, rating, platforms, img
         releaseDate,
         rating,
         platforms,
-        img
+        img,
     })
    
 

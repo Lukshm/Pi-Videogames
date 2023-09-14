@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setGameByName } from '../../Redux/actions';
 import styles from './SearchBar.module.css'; 
+
+
+
 const SearchBar = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
+
 
   function handleInputChange(event) {
     setName(event.target.value);
@@ -12,7 +16,11 @@ const SearchBar = () => {
 
   function handleSubmit() {
     dispatch(setGameByName(name));
+    setName("");
+
   }
+
+
 
   return (
     <div className={styles.container}>

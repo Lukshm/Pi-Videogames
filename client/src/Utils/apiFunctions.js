@@ -45,3 +45,12 @@ export const postVideogame = async (form) => {
     console.log("juego no creado");
   }
 };
+
+export const deleteVideogame = async (id) => {
+  try {
+    await axios.delete(`http://localhost:3001/videogames/${id}`);
+    alert("El juego se ha borrado con exito :(")
+  } catch (error) {
+    alert("No se pudo borrar el juego :)");
+  }
+};

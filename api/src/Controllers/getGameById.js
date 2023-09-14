@@ -38,7 +38,7 @@ const getGameById = async (req, res) => {
             }
             }});
             if (!gameInDb) {
-                throw new Error("No esta, padre")
+                throw new Error("No esta el juego")
             } else {
                 
                 res.status(200).json(gameInDb)

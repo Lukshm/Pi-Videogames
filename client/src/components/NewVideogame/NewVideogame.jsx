@@ -56,7 +56,7 @@ function Create() {
     }
     if (form.img === "") updatedErrors.img = "";
     //VALIDACION DE PLATAFORMAS
-    if (!/^[a-zA-Z0-9\s!-]+$/.test(form.platforms)) {
+    if (!/^[a-zA-Z0-9\s!-,]+$/.test(form.platforms)) {
       updatedErrors.platforms = "Sólo puede contener texto y números";
     } else {
       updatedErrors.platforms = "";

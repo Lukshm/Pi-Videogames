@@ -8,7 +8,7 @@ import { GET_ALL_GAMES,
             FILTERED_GENRES,
             POST_GAME,
             SET_CURRENT_PAGE,
-            GAMES_ORIGIN
+            GAMES_ORIGIN,
         } from "./actionTypes";
 
 export const setAllGames = () => {
@@ -112,10 +112,7 @@ export const postGame = (form) => {
             console.log('server error!');
         }
     };
-    
-    
 }
-
 export const setCurrentPage = (page) => ({
     type: SET_CURRENT_PAGE,
     payload: page,
@@ -127,3 +124,4 @@ export const gamesOrigin = (order) => {
         payload: order
     }
 }
+
