@@ -41,8 +41,9 @@ export const getGamesByName = async (name) => {
 export const postVideogame = async (form) => {
   try {
     await axios.post("http://localhost:3001/videogames", form);
+    alert("El juego fue creado!");
   } catch (error) {
-    console.log("juego no creado");
+    alert("El juego ya exsiste");
   }
 };
 

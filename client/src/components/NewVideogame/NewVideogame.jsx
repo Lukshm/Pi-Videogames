@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { setAllGenres, postGame } from "../../Redux/actions";
 import styles from "./NewVideogame.module.css"
 
 function Create() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   //estado inicial del formulario
   const [form, setForm] = useState({
@@ -163,10 +165,8 @@ function Create() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    
-   
     dispatch(postGame(form)); //para cuando se envia el formulario se vacie el form
-    alert("Created Game!");
+    navigate('/videogames')
     setForm({
       name: "",
       img: "",
