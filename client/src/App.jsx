@@ -5,6 +5,7 @@ import Home from "./components/Home/Home"
 import FormPage from './components/NewVideogame/NewVideogame'
 import Detail from './components/Detail/Detail'
 import Navbar from './components/NavBar/NavBar'
+import Update from './components/UpdateVideogame/UpdateVideogame'
 import './App.css';
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='/videogames' element={<Home/>}/>
         <Route path='/newVideogame' element={<FormPage/>}/>
         <Route path='/detail/:id' element={<Detail/>}/>
+        <Route path='/detail/update/:id' element={<Update/>}/>
        </Routes>
       </div>
    

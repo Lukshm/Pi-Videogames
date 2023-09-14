@@ -7,6 +7,7 @@ const {getAllGenre} = require ("../Controllers/getAllGenre");
 const {getGameById} = require ("../Controllers/getGameById");
 const { postGame } = require('../Controllers/postGame');
 const {deleteGame} = require ('../Controllers/deleteGame')
+const {updateGame} = require ('../Controllers/UpdateGame')
 
 
 
@@ -21,6 +22,8 @@ router.get('/genres', getAllGenre);
 router.post('/videogames', postGame)
 router.get('/videogames', getAllGame);
 router.delete('/videogames/:idVideogame', deleteGame)
+router.put('/videogames/:idVideogame', updateGame)
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 

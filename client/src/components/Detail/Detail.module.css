@@ -43,6 +43,10 @@
     height: auto; 
   }
   
+  .updatebtn{
+    align-self:flex-end;
+    margin-top: 20px;
+  }
  
   .titles {
     margin-top: 20px;

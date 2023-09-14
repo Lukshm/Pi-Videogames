@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setGameById} from "../../Redux/actions";
-import { useParams } from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
 import Loading from "../Loading/Loading";
 import styles from "../Detail/Detail.module.css";
 import Delete from "../Delete/Delete"
+
 
 const Detail = () => {
   const { id } = useParams();
@@ -38,14 +39,16 @@ const Detail = () => {
       ) : (
         <section className={styles["detail-section"]}>
           {game.id && (
+            
             <div className={styles["detail-container"]}>
               <div className={styles["detail-box"]}>
+              
                 <img
                   className={styles["detail-image"]}
                   src={game.img}
                   alt={game.name}
                 />
-               
+
                 <div className={styles["titles"]}>
                   <h1>{game.name}</h1>
                   <h2>
@@ -65,7 +68,11 @@ const Detail = () => {
                 <h2>Plataformas: {game.platforms}</h2>
                 
                 {!Number(game.id)&&
+                  <div>
+                  <Link to={`/detail/update/${id}`}><button className={styles.updatebtn}>Actualizar!</button></Link>
+                  <br/>
                   <Delete id={game.id}/>
+                  </div>
                 }
                 
               </div>

@@ -54,3 +54,12 @@ export const deleteVideogame = async (id) => {
     alert("No se pudo borrar el juego :)");
   }
 };
+
+export const updateVideogame = async (form, id) => {
+  try {
+    await axios.put(`http://localhost:3001/videogames/${id}`, form);
+    alert("El juego se ha modificado con exito :)")
+  } catch (error) {
+    alert("No se pudo modificar el juego :(");
+  }
+};
