@@ -69,7 +69,7 @@ const Detail = () => {
                 
                 {!Number(game.id)&&
                   <div>
-                  <Link to={`/detail/update/${id}`}><button className={styles.updatebtn}>Actualizar!</button></Link>
+                  <Link to={`/detail/update/${id}`}><button className={styles.updatebtn}>Actualizar</button></Link>
                   <br/>
                   <Delete id={game.id}/>
                   </div>

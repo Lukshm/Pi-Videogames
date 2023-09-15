@@ -15,7 +15,7 @@ function Delete({id}) {
     
     return (
     <div>
-    <button className={styles.delbtn} onClick={handleDelete}>Delete</button>
+    <button className={styles.delbtn} onClick={handleDelete}>Borrar</button>
     </div>
   )
 }
