@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateVideogame } from "../../Utils/apiFunctions";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./UpdateVideogame.module.css";
 import { setGameById } from "../../Redux/actions";
+import Modal from "../Modal/Modal";
 
 function Update() {
+  const [openModal, setOpenModal] = useState(false)
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
   const game = useSelector((state) => state.getGameById);
@@ -235,6 +238,7 @@ function Update() {
             !Object.values(form).every((value) => value !== "") || hasErrors()
           }
           className={styles.submitButton}
+          onClick={()=>setOpenModal(true)}
         >
           SUBMIT
         </button>
@@ -246,6 +250,8 @@ function Update() {
         )}
         <br />
       </form>
+      <Modal open={openModal} onClose={()=> {setOpenModal(false)
+        navigate('/videogames')}} />
     </div>
   );
 }

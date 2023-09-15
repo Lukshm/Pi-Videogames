@@ -41,7 +41,6 @@ export const getGamesByName = async (name) => {
 export const postVideogame = async (form) => {
   try {
     await axios.post("http://localhost:3001/videogames", form);
-    alert("El juego fue creado!");
   } catch (error) {
     alert("El juego ya exsiste");
   }
@@ -50,7 +49,7 @@ export const postVideogame = async (form) => {
 export const deleteVideogame = async (id) => {
   try {
     await axios.delete(`http://localhost:3001/videogames/${id}`);
-    alert("El juego se ha borrado con exito :(")
+    
   } catch (error) {
     alert("No se pudo borrar el juego :)");
   }
@@ -59,7 +58,7 @@ export const deleteVideogame = async (id) => {
 export const updateVideogame = async (form, id) => {
   try {
     await axios.put(`http://localhost:3001/videogames/${id}`, form);
-    alert("El juego se ha modificado con exito :)")
+    //alert("El juego se ha modificado con exito :)")
   } catch (error) {
     alert("No se pudo modificar el juego :(");
   }

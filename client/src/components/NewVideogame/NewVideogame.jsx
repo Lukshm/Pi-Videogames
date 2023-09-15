@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAllGenres, postGame } from "../../Redux/actions";
+import Modal from "../Modal/Modal";
 import styles from "./NewVideogame.module.css"
 
 function Create() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [openModal, setOpenModal] = useState(false)
   //estado inicial del formulario
   const [form, setForm] = useState({
     name: "",
@@ -166,7 +168,9 @@ function Create() {
   const submitHandler = (event) => {
     event.preventDefault();
     dispatch(postGame(form)); //para cuando se envia el formulario se vacie el form
-    navigate('/videogames')
+    //navigate('/videogames')
+    
+    
     setForm({
       name: "",
       img: "",
@@ -266,10 +270,11 @@ function Create() {
             !Object.values(form).every((value) => value !== "") || hasErrors()
           }
           className={styles.submitButton}
+          onClick={()=>setOpenModal(true)}
         >
           SUBMIT
         </button>
-
+           
         {hasErrors() && (
           <div className={styles.errorContainer}>
             Los campos deben ser completados antes de contiunar
@@ -277,6 +282,8 @@ function Create() {
         )}
         <br />
       </form>
+      <Modal open={openModal} onClose={()=> {setOpenModal(false)
+        navigate('/videogames')}} />
     </div>
   );
 }
