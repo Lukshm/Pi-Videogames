@@ -67,9 +67,20 @@ const reducer = (state = initialState, action) => {
       };
     }
     case FILTERED_GENRES: {
-      const filteredArr = state.allGamesCopy.filter((elem) =>
+      if(action.payload ==='adventAction'){
+        const fliteredAdventAction = state.allGamesCopy.filter((game=>{
+      return game.genres?.includes('Action') && game.genres?.includes('Adventure')
+    }))
+    return {
+      ...state,
+      allGames: fliteredAdventAction,
+       };
+      }
+
+      const filteredArr = state.allGames.filter((elem) => //filtro que combina a medida que vas seleccionando
         elem.genres?.includes(action.payload)
       );
+      console.log(action.payload);
       return {
         ...state,
         allGames: filteredArr,

@@ -4,6 +4,7 @@ import { setAllGenres, setGameByName, orderCards, setOrder, filterByGenre, games
 import SearchBar from '../SearchBar/SearchBar';
 import Cards from '../Cards/Cards';
 import styles from './Home.module.css'; 
+import { getAllGames } from '../../Utils/apiFunctions';
 
 
 const Home = () => {
@@ -41,13 +42,19 @@ const Home = () => {
    const handleFilterGenres = (e) => {
     setFilterGenres(e.target.value)
     dispatch(filterByGenre(e.target.value))
-   
+  
    }
   
    const filterOrigin = (e) => {
     const { value } = e.target;
     dispatch(gamesOrigin(value));
   };
+
+  const handleAdventAction = () =>{
+    dispatch(filterByGenre('adventAction'));
+    
+  }
+  
 
   return (
     <div className={styles.container}>
@@ -60,12 +67,13 @@ const Home = () => {
             </option>
           ))}
         </select>
-
+          
         <select onChange={handleFilterGenres} value={filterGenres}>
           <option value="AllGenres">Genres</option>
           {genreRes.map((genre, index) => (
             <option key={index} value={genre.name}>
               {genre.name}
+
             </option>
           ))}
         </select>
@@ -76,9 +84,12 @@ const Home = () => {
               <option value="db">DB</option>
             </optgroup>
           </select>
-        <button onClick={handleReset}>Reset Filter</button>
+          
+        <button onClick={handleReset}>Reset</button>
+        <button onClick={handleAdventAction}>Aventuras y Accion</button>
       </div>
-  
+      
+            
       <Cards />
     </div>
   );
