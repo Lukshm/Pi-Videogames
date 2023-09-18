@@ -7,8 +7,7 @@ import {
   FILTERED_GENRES,
   POST_GAME,
   SET_CURRENT_PAGE,
-  GAMES_ORIGIN
-
+  GAMES_ORIGIN,
 } from "./actionTypes";
 
 const initialState = {
@@ -20,6 +19,10 @@ const initialState = {
   videogames: [],
   currentPage: 1,
   itemsPerPage: 15,
+  filterChose: {
+    genreOne: "select Genre One",
+    genreTwo: "select Genre Two",
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -67,23 +70,21 @@ const reducer = (state = initialState, action) => {
       };
     }
     case FILTERED_GENRES: {
-      if(action.payload ==='adventAction'){
-        const fliteredAdventAction = state.allGamesCopy.filter((game=>{
-      return game.genres?.includes('Action') && game.genres?.includes('Adventure')
-    }))
-    return {
-      ...state,
-      allGames: fliteredAdventAction,
-       };
+      const { genreOne, genreTwo } = action.payload;
+      let filtered = [...state.allGamesCopy];
+  
+      if (genreOne !== "select Genre One") {
+        filtered = filtered.filter((game) => game.genres?.includes(genreOne));
       }
 
-      const filteredArr = state.allGames.filter((elem) => //filtro que combina a medida que vas seleccionando
-        elem.genres?.includes(action.payload)
-      );
-      console.log(action.payload);
+      if (genreTwo !== "select Genre Two" && genreTwo !== "") {
+        filtered = filtered.filter((game) => game.genres?.includes(genreTwo));
+      }
+
       return {
         ...state,
-        allGames: filteredArr,
+        filterChosen: action.payload,
+        allGames: filtered,
       };
     }
 
@@ -100,36 +101,41 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case GAMES_ORIGIN : {
-      let originGames = [...state.allGamesCopy]
-      if(action.payload === 'All'){
-          return {
-              ...state,
-              allGames: [...state.allGamesCopy]
-          }
+    case GAMES_ORIGIN: {
+      let originGames = [...state.allGamesCopy];
+      if (action.payload === "All") {
+        return {
+          ...state,
+          allGames: [...state.allGamesCopy],
+        };
       }
-      if(action.payload === 'api') {
-          const apiGames = originGames.filter((game) => Number.isInteger(game.id))
-          console.log(apiGames)
+      if (action.payload === "api") {
+        const apiGames = originGames.filter((game) =>
+          Number.isInteger(game.id)
+        );
+        console.log(apiGames);
 
-          return{
-              ...state,
-              allGames: apiGames
-          }
+        return {
+          ...state,
+          allGames: apiGames,
+        };
       }
 
-      if (action.payload === 'db') {
-          const uuidv4Pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+      if (action.payload === "db") {
+        const uuidv4Pattern =
+          /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-          const dbGames = originGames.filter((game) => uuidv4Pattern.test(game.id));
-          console.log(dbGames)
+        const dbGames = originGames.filter((game) =>
+          uuidv4Pattern.test(game.id)
+        );
+        console.log(dbGames);
 
-          return {
-            ...state,
-            allGames: dbGames,
-          };
-        }
-  }
+        return {
+          ...state,
+          allGames: dbGames,
+        };
+      }
+    }
     default:
       return { ...state };
   }

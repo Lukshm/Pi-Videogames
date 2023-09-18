@@ -1,103 +1,142 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setAllGenres, setGameByName, orderCards, setOrder, filterByGenre, gamesOrigin } from '../../Redux/actions';
-import SearchBar from '../SearchBar/SearchBar';
-import Cards from '../Cards/Cards';
-import styles from './Home.module.css'; 
-import { getAllGames } from '../../Utils/apiFunctions';
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setAllGenres,
+  setGameByName,
+  orderCards,
+  setOrder,
+  filterByGenre,
+  gamesOrigin,
+} from "../../Redux/actions";
+import SearchBar from "../SearchBar/SearchBar";
+import Cards from "../Cards/Cards";
+import styles from "./Home.module.css";
 
 const Home = () => {
-  
-  
   const dispatch = useDispatch();
-  const genreRes= useSelector((state)=> state.getAllGenres);
-  const [filterGenres, setFilterGenres] = useState('')
-  const [order, setLocalOrder] = useState('')
-  // const orderChosen = useSelector((state) => state.allGames)
-  
-  useEffect(()=>{
-    dispatch(setAllGenres())
-    // dispatch(setOrder(orderChosen))
-    
-  },[]);
-  
-  // useEffect(() => {
-  //   setLocalOrder(orderChosen)
-  
-  //  },[orderChosen])
+  const genreRes = useSelector((state) => state.getAllGenres);
+  const [filterGenres, setFilterGenres] = useState({
+    genreOne: "select Genre One",
+    genreTwo: "select Genre Two",
+  });
+  const [order, setLocalOrder] = useState("");
 
-  const handleReset = ()=> {
-    dispatch(setGameByName(''));
+  useEffect(() => {
+    dispatch(setAllGenres());
+  }, [filterGenres]);
+
+  const handleReset = () => {
+    dispatch(setGameByName(""));
     dispatch(filterByGenre(""));
     dispatch(orderCards(""));
     dispatch(setOrder(""));
-  }
-  const handleSort = (e) =>{
+    setFilterGenres({
+      genreOne: "select Genre One",
+      genreTwo: "select Genre Two",
+    })
+  };
+  const handleSort = (e) => {
     let selector = e.target.value;
-    setLocalOrder(selector)
-    dispatch(setOrder(selector))
-  
-   }
-   const handleFilterGenres = (e) => {
-    setFilterGenres(e.target.value)
-    dispatch(filterByGenre(e.target.value))
-  
-   }
-  
-   const filterOrigin = (e) => {
+    setLocalOrder(selector);
+    dispatch(setOrder(selector));
+  };
+;
+  const handleFilterOne = (e) => {
+    setFilterGenres({
+      ...filterGenres,
+      genreOne: e.target.value,
+    });
+    dispatch(filterByGenre({
+      ...filterGenres,
+      genreOne: e.target.value
+    }))
+  };
+  const handleFilterTwo = (e) => {
+    setFilterGenres({
+      ...filterGenres,
+      genreTwo: e.target.value,
+    });
+    dispatch(filterByGenre({
+      ...filterGenres,
+      genreTwo: e.target.value
+    }))
+  };
+  const filterOrigin = (e) => {
     const { value } = e.target;
     dispatch(gamesOrigin(value));
   };
-
-  const handleAdventAction = () =>{
-    dispatch(filterByGenre('adventAction'));
-    
-  }
-  
 
   return (
     <div className={styles.container}>
       <SearchBar />
       <div className={styles.selectors}>
         <select value={order} onChange={handleSort}>
-          {['Select order', 'A-Z', 'Z-A', 'Best rated', 'Least rated'].map((order, index) => (
-            <option key={index} value={order}>
-              {order}
-            </option>
-          ))}
+          {["Select order", "A-Z", "Z-A", "Best rated", "Least rated"].map(
+            (order, index) => (
+              <option key={index} value={order}>
+                {order}
+              </option>
+            )
+          )}
         </select>
-          
-        <select onChange={handleFilterGenres} value={filterGenres}>
-          <option value="AllGenres">Genres</option>
-          {genreRes.map((genre, index) => (
-            <option key={index} value={genre.name}>
-              {genre.name}
 
-            </option>
-          ))}
+        <select
+          value={
+            filterGenres.genreOne === "select Genre One"
+              ? ""
+              : filterGenres.genreOne
+          }
+          onChange={handleFilterOne}
+        >
+          <option disabled value="">
+            Select Genre
+          </option>
+          {genreRes.map((genre) => {
+            return (
+              <option key={genre.id} value={genre.name}>
+                {genre.name}
+              </option>
+            );
+          })}
         </select>
-  
-        <select name="Origin" onChange={filterOrigin}>
-            <optgroup label="Origin">
-              <option value="api">API</option>
-              <option value="db">DB</option>
-            </optgroup>
+
+        {filterGenres.genreOne !== "select Genre One" ? (
+          <select
+            value={
+              filterGenres.genreTwo === "select Genre Two"
+                ? ""
+                : filterGenres.genreTwo
+            }
+            onChange={handleFilterTwo}
+          >
+            <option disabled value="">
+              Select second Genre
+            </option>
+            <option value="">All</option>
+            {genreRes.map((genre) => {
+              return (
+                <option key={genre.id} value={genre.name}>
+                  {genre.name}
+                </option>
+              );
+            })}
           </select>
-          
+        ) : null}
+
+        <select name="Origin" onChange={filterOrigin}>
+          <optgroup label="Origin">
+            <option value="api">API</option>
+            <option value="db">DB</option>
+          </optgroup>
+        </select>
+
         <button onClick={handleReset}>Reset</button>
-        <button onClick={handleAdventAction}>Aventuras y Accion</button>
+
       </div>
-      
-            
+
       <Cards />
     </div>
   );
 };
-  
-  
-  
-  
-  
 
-export default Home
+export default Home;
