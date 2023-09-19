@@ -7,6 +7,7 @@ import Detail from './components/Detail/Detail'
 import Navbar from './components/NavBar/NavBar'
 import Update from './components/UpdateVideogame/UpdateVideogame'
 import './App.css';
+import About from './components/About/About'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/newVideogame' element={<FormPage/>}/>
         <Route path='/detail/:id' element={<Detail/>}/>
         <Route path='/detail/update/:id' element={<Update/>}/>
+        <Route path='/about' element={<About/>}/>
        </Routes>
       </div>
    

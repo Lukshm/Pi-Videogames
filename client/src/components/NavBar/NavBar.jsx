@@ -11,6 +11,9 @@ const Navbar = () => {
       <Link to={'/newVideogame'}>
         <button>Create Game</button>
       </Link>
+      <Link to={'/about'}>
+        <button>About Me</button>
+      </Link>
     </div>
   )
 }

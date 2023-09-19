@@ -1,0 +1,47 @@
+.container {
+    background: rgba(0, 0, 0, 0.205);
+  }
+  
+  .selfContainer {
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9.2px);
+    -webkit-backdrop-filter: blur(9.2px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .icon {
+    font-family: 'Font Awesome 5 Free';
+    font-size: 24px;
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .icon:hover {
+    color: #0056b3;
+  }
+  
+  .text {
+    margin-bottom: 20px;
+  }
+  
+  .iconImage1 {
+    width: 25%;
+    height: 25%; 
+    margin: 5px; 
+  }
+  .iconImage2 {
+    width: 30%;
+    height: 30%; 
+    margin: 5px; 
+  }
