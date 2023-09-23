@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAllGenres, postGame } from "../../Redux/actions";
 import Modal from "../Modal/Modal";
-import styles from "./NewVideogame.module.css"
+import styles from "./NewVideogame.module.css";
 
 function Create() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
   //estado inicial del formulario
   const [form, setForm] = useState({
     name: "",
@@ -18,6 +18,9 @@ function Create() {
     releaseDate: "",
     rating: "",
     genreName: [],
+    playedDate: "",
+    difficulty: "",
+    review: "",
   });
   //estado inicial de los errores
   const [errors, setErrors] = useState({
@@ -28,12 +31,12 @@ function Create() {
     releaseDate: "",
     rating: "",
     genreName: [],
+    playedDate: "",
+    difficulty: "",
+    review: "",
   });
 
-  
-
   const allGenres = useSelector((state) => state.getAllGenres);
- 
 
   useEffect(() => {
     dispatch(setAllGenres());
@@ -43,7 +46,8 @@ function Create() {
     const updatedErrors = {};
     //VALIDACION DEL NOMBRE
     if (!/^[a-zA-Z0-9\s!:]+$/.test(form.name)) {
-      updatedErrors.name = "Sólo puede contener letras, números y algunos simbolos";
+      updatedErrors.name =
+        "Sólo puede contener letras, números y algunos simbolos";
     } else {
       updatedErrors.name = "";
     }
@@ -104,7 +108,9 @@ function Create() {
       // Verificar el formato completo de la fecha
       if (form.releaseDate.length === 8) {
         if (
-          !/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{2}$/.test(form.releaseDate)
+          !/^(0[1-9]|[12]\d|3[01])\/(0[1-9]|1[0-2])\/\d{2}$/.test(
+            form.releaseDate
+          )
         ) {
           updatedErrors.releaseDate =
             "Formato de fecha inválido. Utilice yyyy/mm/dd";
@@ -123,6 +129,16 @@ function Create() {
     if (form.rating === "") updatedErrors.rating = "";
 
     setErrors(updatedErrors);
+
+    if (!/^(10(\.0)?|[1-9](\.\d)?)$/.test(form.difficulty)) {
+      updatedErrors.difficulty = "Ingrese un número válido entre 0 y 10";
+    } else {
+      updatedErrors.difficulty = "";
+    }
+
+    if (form.difficulty === "") updatedErrors.difficulty = "";
+
+    setErrors(updatedErrors);
   };
 
   const hasErrors = () => {
@@ -131,15 +147,14 @@ function Create() {
       Object.values(errors).some((error) => error !== "") || noGenresSelected
     );
   };
-  
+
   const changeHandler = (event) => {
     const property = event.target.name;
     const value = event.target.value;
-    
-   if (property === "genreName") {
+
+    if (property === "genreName") {
       const { checked } = event.target;
       const genre = event.target.value;
-      
 
       if (checked) {
         setForm((form) => ({
@@ -158,7 +173,7 @@ function Create() {
         [property]: value,
       }));
     }
-  
+
     validate({
       ...form,
       [property]: value,
@@ -169,8 +184,7 @@ function Create() {
     event.preventDefault();
     dispatch(postGame(form)); //para cuando se envia el formulario se vacie el form
     //navigate('/videogames')
-    
-    
+
     setForm({
       name: "",
       img: "",
@@ -179,13 +193,15 @@ function Create() {
       releaseDate: "",
       rating: "",
       genreName: [],
+      playedDate: "",
+      difficulty: "",
+      review: "",
     });
-  
   };
 
   return (
     <div>
-     <br />
+      <br />
       <form onSubmit={submitHandler} className={styles.formContainer}>
         <div className={styles.formSection}>
           <div className={styles.formField}>
@@ -218,7 +234,9 @@ function Create() {
             onChange={changeHandler}
             name="description"
           />
-          {errors.description && <span className={styles.error}>{errors.description}</span>}
+          {errors.description && (
+            <span className={styles.error}>{errors.description}</span>
+          )}
         </div>
         <div className={styles.formSection}>
           <label className={styles.formText}> Plataformas: </label>
@@ -228,7 +246,9 @@ function Create() {
             onChange={changeHandler}
             name="platforms"
           />
-          {errors.platforms && <span className={styles.error}>{errors.platforms}</span>}
+          {errors.platforms && (
+            <span className={styles.error}>{errors.platforms}</span>
+          )}
         </div>
         <div className={styles.formSection}>
           <label className={styles.formText}> Fecha de lanzamiento: </label>
@@ -238,7 +258,9 @@ function Create() {
             onChange={changeHandler}
             name="releaseDate"
           />
-          {errors.releaseDate && <span className={styles.error}>{errors.releaseDate}</span>}
+          {errors.releaseDate && (
+            <span className={styles.error}>{errors.releaseDate}</span>
+          )}
         </div>
         <div className={styles.formSection}>
           <label className={styles.formText}> Rating: </label>
@@ -248,9 +270,48 @@ function Create() {
             onChange={changeHandler}
             name="rating"
           />
-          {errors.rating && <span className={styles.error}>{errors.rating}</span>}
+          {errors.rating && (
+            <span className={styles.error}>{errors.rating}</span>
+          )}
         </div>
-        <div className={styles.genreContainer }>
+       
+        <div className={styles.formSection}>
+          <label className={styles.formText}> Review: </label>
+          <input
+            type="text"
+            value={form.review}
+            onChange={changeHandler}
+            name="review"
+          />
+          {errors.description && (
+            <span className={styles.error}>{errors.description}</span>
+          )}
+        </div>
+        <div className={styles.formSection}>
+          <label className={styles.formText}> Fecha jugado: </label>
+          <input
+            type="text" //date
+            value={form.playedDate}
+            onChange={changeHandler}
+            name="playedDate"
+          />
+          {errors.releaseDate && (
+            <span className={styles.error}>{errors.releaseDate}</span>
+          )}
+        </div>
+        <div className={styles.formSection}>
+          <label className={styles.formText}> Dificultad: </label>
+          <input
+            type="text"
+            value={form.difficulty}
+            onChange={changeHandler}
+            name="difficulty"
+          />
+          {errors.difficulty && (
+            <span className={styles.error}>{errors.difficulty}</span>
+          )}
+        </div>
+        <div className={styles.genreContainer}>
           {allGenres?.map((genre) => (
             <span key={genre.id} className={styles.genre}>
               {genre.name}
@@ -270,11 +331,11 @@ function Create() {
             !Object.values(form).every((value) => value !== "") || hasErrors()
           }
           className={styles.submitButton}
-          onClick={()=>setOpenModal(true)}
+          onClick={() => setOpenModal(true)}
         >
           SUBMIT
         </button>
-           
+
         {hasErrors() && (
           <div className={styles.errorContainer}>
             Los campos deben ser completados antes de contiunar
@@ -282,8 +343,13 @@ function Create() {
         )}
         <br />
       </form>
-      <Modal open={openModal} onClose={()=> {setOpenModal(false)
-        navigate('/videogames')}} />
+      <Modal
+        open={openModal}
+        onClose={() => {
+          setOpenModal(false);
+          navigate("/videogames");
+        }}
+      />
     </div>
   );
 }

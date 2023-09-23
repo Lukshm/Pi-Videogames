@@ -1,7 +1,7 @@
 const {Videogame, Genre} = require('../db')
 
 
-const createGame = async (name, description, releaseDate, rating, platforms, img, genreName) =>{
+const createGame = async (name, description, releaseDate, rating, platforms, img, genreName, playedDate, difficulty, review) =>{
     const gameCreated = await Videogame.findOne({where: {name}});
     if(gameCreated){
         throw new Error(`Ya fue creado ${name}`)
@@ -14,6 +14,9 @@ const createGame = async (name, description, releaseDate, rating, platforms, img
         rating,
         platforms,
         img,
+        playedDate, 
+        difficulty, 
+        review
     })
    
 

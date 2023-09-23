@@ -36,6 +36,21 @@ module.exports = (sequelize) => {
       allowNull: false
     },
 
+    playedDate: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    difficulty:{
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+
+    review:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
+
   });
 };
 

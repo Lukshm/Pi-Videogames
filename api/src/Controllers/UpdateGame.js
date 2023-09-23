@@ -2,7 +2,7 @@ const { Videogame } = require("../db");
 
 const updateGame = async (req, res) => {
   const { idVideogame } = req.params;
-  const { name, description, releaseDate, rating, platforms, img } = req.body;
+  const { name, description, releaseDate, rating, platforms, img, playedDate, difficulty, review } = req.body;
 
   try {
     const gameUpdate = await Videogame.findByPk(idVideogame); //reviso si el game existe
@@ -18,6 +18,9 @@ const updateGame = async (req, res) => {
       rating,
       platforms,
       img,
+      playedDate,
+      difficulty,
+      review
     },
     {where:{id:idVideogame}}) 
 

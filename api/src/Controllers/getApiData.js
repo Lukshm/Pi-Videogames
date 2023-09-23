@@ -19,8 +19,8 @@ const getApiData = async ()=> {
                 released: viGame.released,
                 rating: viGame.rating,
                 platform: viGame.platforms.map((viGame) => viGame.platform.name).join(', ')
-
             })
+          
         })
     }
   
